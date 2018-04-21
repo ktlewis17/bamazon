@@ -13,63 +13,66 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-  if (err) throw err;
-  console.log("connected as Customer" + connection.threadId + "\n");
+  if (err) { console.log(error) };
+  { console.log("connected as Customer" + connection.threadId + "\n"); }
 AllProducts();
 });
 
 function AllProducts() {
     connection.query('SELECT * FROM products', function(err, res) {
       var DisplayTable = new Table({
-            head: ['item ID', 'Department', 'Product', 'Price $', 'Stock Qty'],
+            head: ['item ID', 'Department', 'Product', 'Price', 'Stock Qty'],
             colWidths: [10, 20, 25, 10, 15]
       });
 
       for (var i = 0; i < res.length; i++)  {
       DisplayTable.push(
-        [res[i].item_id, res[i].department_name, res[i].product_name,  res[i].price, res[i].stock_quantity]
+        [res[i].item_id, res[i].department_name, res[i].product_name, "$" + res[i].price, res[i].stock_quantity]
       );
   }
       console.log(DisplayTable.toString());
       yourOrder ();
     
     });
-  }
+  };
   
 
 function yourOrder () {
 inquirer
 .prompt([
     { 
-     name: "ID",
+     name: "id",
      type: 'input',
      message: "What is the product ID you're searching for?"
    },
    {
-     name: "Quantity",
+     name: "quantity",
      type: 'input',
      message: "How many units of the products would you like to purchase?"
    },
    ]).then(function(order) {
-      // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
-      var selQuantity = order.selQuantity;
-      var itemID = order.ID;
-      var totalPrice = response[0].Price * quantityNeeded;
-        
-    connection.query('SELECT * FROM products WHERE item_id = ' + itemID, function(err, selItem){
-    if (err) {console.log(err) };
 
-    if (selItem[0].stock_Quantity - selQuantity >= 0){
-      var totalPrice = response[0].Price * quantityNeeded;
-      console.log ("Selection successful");
-      console.log("Your total cost for" + selQuantity + " " + res[0].product_name + " is $" + totalPrice + " " );
+    var quantity = order.quantity;
+      var itemId = order.id;
+    
+      connection.query('SELECT * FROM products WHERE item_id=' + itemId, function(err, item ) {
+        if (err) throw err;
+           if (item[0].stock_quantity - quantity >= 0) {
+                console.log("Quantity in Stock: " + item[0].stock_quantity + " Quantity Ordered: " + quantity);
+                console.log("Your total $ " + (order.quantity * item[0].price));
+                             
+               connection.query('UPDATE products SET stock_quantity=? WHERE item_id=?', [item[0].stock_quantity - quantity, itemId],
+                function(err) {
+                 if (err) throw err;
+                     
+                    AllProducts();
+               });  
 
-      connection.query('Update Products SET stock_quantity =? WHERE item_id=?', [selItem[0].stock_Quantity - selQuantity, itemID]);
-    }
-    else {
-      console.log("Insufficient Quantity. Product is unavailable at this time");
-      
-    };
-    AllProducts ();
-  });
-}) } 
+              }
+
+           else {
+                console.log("Insufficient quantity. Product Unavailable")
+                AllProducts();
+           }
+      });
+    })}
