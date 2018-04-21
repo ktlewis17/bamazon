@@ -1,7 +1,7 @@
 {
   "name": "bamazon",
   "version": "1.0.0",
-  "description": "",
+  "description": "mysql &amp; node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,16 @@
     "inquire": "^0.4.8",
     "inquirer": "^5.2.0",
     "mysql": "^2.15.0",
-    "require": "^2.4.20"
-  }
+    "require": "^2.4.20",
+    "uglify": "^0.1.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktlewis17/bamazon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ktlewis17/bamazon/issues"
+  },
+  "homepage": "https://github.com/ktlewis17/bamazon#readme"
 }
