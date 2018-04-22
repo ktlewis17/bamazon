@@ -5,7 +5,6 @@ var Table = require('cli-table');
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-
     user: "root",
     password: "",
     database: "bamazon"
@@ -13,7 +12,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-  if (err) { console.log(error) };
+  if (err) throw err;
   { console.log("connected as Customer" + connection.threadId + "\n"); }
 AllProducts();
 });

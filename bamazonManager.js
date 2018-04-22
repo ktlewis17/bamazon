@@ -10,55 +10,41 @@ var connection = mysql.createConnection({
      database: "Bamazon"
 });
 
-connection.connect(function(err) {
-     if (err) throw err;
-     console.log("connected as Manager " + connection.threadId);
-});
 
-function showInventory() {
-     connection.query('SELECT * FROM products', function(err, inventory) {
-          if (err) throw err;
-          console.log("Bamazon's Inventory");
-          for(var i = 0; i < inventory.length; i++) {
-          console.log("Item ID: " + inventory[i].item_id +  | Department: " + inventory[i].department_name + " $ Price: " +  inventory[i].price + " | Quantity: " + inventory[i].stock_quantity);
-          } 
-     }); 
-}
+
+connection.connect(function(err) {
+  if (err) throw err; 
+  { console.log("connected as Manager" +  "\n"); }
+  
 
 inquirer.prompt([
-	
-	{
-		type: "list",
-		message: "Select an option from below",
-		choices: ["View All Inventory", "View Low Inventory", "Add to Inventory", "Add New Product"],
-		name: "selection"
-	}
 
-// Once we are done with all the questions... "then" we do stuff with the answers
-// In this case, we store all of the answers into a "user" object that inquirer makes for us.
-     ]).then(function () {
-          switch(user.selection) {
-               case "View All Inventory":
-               showInventory();
-               break;
-
-
+                {
+                 message: "Select an option from below",
+                  choices: ["View All Inventory", "View Low Inventory", "Add to Inventory", "Add New Product"],
+                  type: "list",
+                  name: "selection"
+                }
+              
+                  ]).then(function(manager) {
+                      switch(manager.selection) {
+                      case "View All Inventory":
+                      break;
 
                case "View Low Inventory":
-               connection.query('SELECT * FROM products WHERE StockQuantity < 5', function(err, inventory) {
+               connection.query('SELECT * FROM products WHERE stock_quantity < 10', function(err, inventory) {
                     if (err) throw err;
                     console.log("Bamazon's Inventory");
                     for(var i = 0; i < inventory.length; i++) {
-                    console.log("Item ID: " + inventory[i].id + " | Product: " + inventory[i].product_name + " | Department: " + inventory[i].department_name + " $ Price: " +  inventory[i].price + " | Quantity: " + inventory[i].stock_quantity);
+                    console.log("Item ID: " + inventory[i].item_id + " | Product: " + inventory[i].product_name + " | Department: " + inventory[i].department_name + " |  Price: $" +  inventory[i].price + " | Quantity: " + inventory[i].stock_quantity);
                     }
                }); 
                break;
 
 
-
                case "Add to Inventory":
                inquirer.prompt([
-               	// 
+               	
                	{
                		type: "input",
                		message: "Enter item id to be added?",
@@ -69,20 +55,42 @@ inquirer.prompt([
                		message: "What is the quantity of item being added?",
                		name: "quantity"
                	}
-               // 
-               // 
+            
           ]).then(function (request) {
-                    connection.query('SELECT * FROM products WHERE id=' + request.itemId, function(err, selectedItem) {
-                    	if (err) throw err;
-                         if (selectedItem[0].stock_quantity - quantity >= 0) {
-                              console.log("Added + request.amount + " + selectedItem[0].product_name + " to inventory.");
-                              connection.query('UPDATE products SET stock_quantity=? WHERE item_id=?', [selectedItem[0].stock_quantity + Number(request.amount), request.itemId],
+
+            var quantity = request.quantity;
+             var itemId = request.id;
+
+                    connection.query('SELECT * FROM products WHERE item_id=' + request.itemId, function(err, item) {
+                        if (err) throw err;
+                    
+                         {
+               
+                             connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [item[0].stock_quantity + Number (request.quantity), request.itemId],
                               function(err, inventory) {
-                              	if (err) throw err;
-                                   // Runs the prompt again, so the user can keep shopping.
+                             	if (err) throw err;
                                    showInventory();
-                              });  // Ends the code to add item to the inventory.
-                    });
+                          });  
+
+                          function showInventory() {
+                            connection.query('SELECT * FROM products', function(err, res) {
+                              var DisplayTable = new Table({
+                                    head: ['item ID', 'Department', 'Product', 'Price', 'Stock Qty'],
+                                    colWidths: [10, 20, 25, 10, 15]
+                              });
+                        
+                              for (var i = 0; i < res.length; i++)  {
+                              DisplayTable.push(
+                                [res[i].item_id, res[i].department_name, res[i].product_name, "$" + res[i].price, res[i].stock_quantity]
+                              );
+                          }
+                              console.log(DisplayTable.toString());
+                          
+                            
+                            });
+                          };
+                          }});
+                        
                }); 
                break;
 
@@ -109,20 +117,20 @@ inquirer.prompt([
                          message: "What is the quantity of items being added?",
                          name: "stock_quantity"
                     }
-               // Once we are done with all the questions... "then" we do stuff with the answers
-               // In this case, we store all of the answers into a "user" object that inquirer makes for us.
+              
           ]).then(function (newItem) {
 
                connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?,?,?,?)",[newItem.product_name, newItem.department_name, newItem.price, newItem.stock_quantity],
                function(err, inventory) {
                     if (err) throw err;
-                    // Runs the prompt again, so the user can keep shopping.
+                
                     console.log("Item successfully added!");
                     showInventory();
-               });  // Ends the code to remove item from inventory.
-
+               }); 
 
                }); 
           } 
 
 });  
+
+})

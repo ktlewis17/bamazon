@@ -1,2 +1,5 @@
-# bamazon
-mysql &amp; node.js 
+
+
+
+
+![alt text](images/customer-view-inventory.png)
