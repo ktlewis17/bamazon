@@ -38,7 +38,7 @@ _Manager is able to view inventory to add new products, remove products, and che
 
 
 Manager View - low inventory
-![alt text](images/manager-view-low-inventory.png)
+![alt text](images/manager-view-low-inventory .png)
 
 
 Manager View - add to low inventory
