@@ -12,7 +12,6 @@ A Database to keep track of products, price, and availability, as well additonal
 <h3>Customer App</h3>
 _customer is able to view current products and order items in bulk and view prices and quantities. If products are out of stock, customer will be notified of product unavailablility_.
 
-Customer view of all Inventory
 ![alt text](images/customer-view-inventory.png)
 
 Customer view to make selection by item ID to buy products, inventory is updated to show available products.
@@ -34,14 +33,16 @@ _Manager is able to view inventory to add new products, remove products, and che
 
 ![alt text](images/manager-view-options.png)
 
-Manager View all inventory
+
 ![alt text](images/manager-view-inventory.png)
 
-Manager View low inventory
+
+Manager View - low inventory
 ![alt text](images/manager-view-low-inventory.png)
 
-Manager View to add to low inventory
+
+Manager View - add to low inventory
 ![alt text](images/manager-view-add-to-inventory.png)
 
-Manager View to add new product
+Manager View - add new product
 ![alt text](images/manager-view-add-new-product.png)
