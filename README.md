@@ -44,6 +44,7 @@ Manager View - low inventory
 Manager View - add to low inventory
 ![alt text](images/manager-view-add-to-inventory.png)
 
-<br>
+
 Manager View - add new product
+<br></br>
 ![alt text](images/manager-view-add-new-product.png)
