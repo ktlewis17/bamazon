@@ -28,11 +28,10 @@ Customer attepmpts to buy product that is sold out, and receives error message o
 
 
 
-<h3>Manager App - </h3>
+<h3>Manager App</h3>
 
 _Manager is able to view inventory to add new products, remove products, and check inventory_.
 
-Manager View Options
 ![alt text](images/manager-view-options.png)
 
 Manager View all inventory
