@@ -2,14 +2,14 @@
 
 
 
-OVERVIEW
+<strong>OVERVIEW</strong>
 
-A Database to keep track of products price and availability, as well additonal options for Management to view inventory to add or remove products.
+A Database to keep track of products, price, and availability, as well additonal options for Customer view and Management view options.
 
 
-FUNCTIONALITY
+<strong> FUNCTIONALITY </strong>
 
-*Customer App - customer is able to view current products and order items in bulk and view prices and quantities. If products are out of stock, customer will be notified of product unavailablility.
+Customer App - _customer is able to view current products and order items in bulk and view prices and quantities. If products are out of stock, customer will be notified of product unavailablility_.
 
 Customer view of all Inventory
 ![alt text](images/customer-view-inventory.png)
@@ -27,7 +27,7 @@ Customer attepmpts to buy product that is sold out, and receives error message o
 
 
 
-*Manager App - Manager is able to view inventory to add new products, remove products, and check inventory.
+*Manager App - _Manager is able to view inventory to add new products, remove products, and check inventory_.
 
 Manager View Options
 ![alt text](images/manager-view-options.png)
