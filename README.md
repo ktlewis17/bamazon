@@ -28,18 +28,11 @@
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-options.png)
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-inventory.png)
 
-
 *Manager View - low inventory*
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-low-inventory.png)
 
+*Manager View - add new product*
+![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-add-new-product.png)
 
 *Manager View - add to low inventory*
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-add-to-inventory.png)
-
-<br>
-*Manager View - add new product*
-<br>
-![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-add-new-product.png)
-
-
-
