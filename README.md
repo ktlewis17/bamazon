@@ -1,11 +1,11 @@
-bamazon
-OVERVIEW
+# **Bamazon**
+##OVERVIEW
 
-A Database to keep track of products, price, and availability, as well additonal options for Customer view and Management view options.
+*A Database to keep track of products, price, and availability, as well additonal options for Customer view and Management view options.*
 
-FUNCTIONALITY
+## **FUNCTIONALITY**
 
-Customer App
+## **Customer App**
 customer is able to view current products and order items in bulk and view prices and quantities. If products are out of stock, customer will be notified of product unavailablility.
 
 
@@ -22,7 +22,7 @@ Customer attepmpts to buy product that is sold out, and receives error message o
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/customer-insufficient-quantity.png)
 
 
-Manager App
+## **Manager App**
 Manager is able to view inventory to add new products, remove products, and check inventory.
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-options.png)
 ![alt text](https://github.com/ktlewis17/bamazon/blob/master/images/manager-view-inventory.png)
